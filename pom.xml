@@ -109,9 +109,6 @@
 <!--						<entrypoint>-->
 <!--							java -XX:ArchiveClassesAtExit=/app/application.jsa -Dspring.context.exit=onRefresh -jar /app/classpath/spring-boot-cds-demo-1.0.0-SNAPSHOT.original.jar &amp;&amp; java -Xlog:cds -XX:SharedArchiveFile=/app/application.jsa -jar /app/classpath/spring-boot-cds-demo-1.0.0-SNAPSHOT.original.jar-->
 <!--						</entrypoint>-->
-<!--						<user>nonroot:nonroot</user>-->
-<!--						<workingDirectory>/home/nonroot</workingDirectory>-->
-<!--						<extraClasspath>/appcds/*</extraClasspath>-->
 
 						<jvmFlags>
 							<jvmFlag>-Dspring.aot.enabled=true</jvmFlag>
