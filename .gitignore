@@ -37,3 +37,5 @@ out/
 
 ### VS Code ###
 .vscode/
+/src/main/jib/appcds/application.jsa
+/application/

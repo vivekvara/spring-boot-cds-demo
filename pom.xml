@@ -67,6 +67,60 @@
 					</image>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.4</version>
+				<configuration>
+					<from>
+<!--						<image>gcr.io/distroless/java-debian10:17-debug</image>-->
+						<image>gcr.io/distroless/java17-debian12@sha256:d101de8ba4ca7717c837162b414f0b2ba8565ddbafadf466e554075b7cb0147b</image>
+						<platforms>
+							<platform>
+								<architecture>amd64</architecture>
+								<os>linux</os>
+							</platform>
+							<platform>
+								<architecture>arm64</architecture>
+								<os>linux</os>
+							</platform>
+						</platforms>
+					</from>
+					<to>
+						<image>${project.groupId}/${project.artifactId}-experiment</image>
+					</to>
+					<extraDirectories>
+						<paths>
+							<path>
+								<from>src/main/jib/appcds</from>
+								<into>/appcds</into>
+							</path>
+						</paths>
+					</extraDirectories>
+					<container>
+<!--						<expandClasspathDependencies>true</expandClasspathDependencies>-->
+<!--						<args>-->
+<!--							java -XX:ArchiveClassesAtExit=/appcds/application.jsa -Dspring.context.exit=onRefresh -jar /app/classpath/spring-boot-cds-demo-1.0.0-SNAPSHOT.jar.original-->
+<!--							&amp;&amp; java -Xlog:cds -XX:SharedArchiveFile=/appcds/application.jsa -jar /app/classpath/spring-boot-cds-demo-1.0.0-SNAPSHOT.jar.original-->
+<!--						</args>-->
+<!--						<entrypoint>-->
+<!--							java,-Xlog:cds,-XX:SharedArchiveFile=/appcds/application.jsa,-cp,@/app/jib-classpath-file,com.example.appcdsdemo.CdsDemoApplication-->
+<!--						</entrypoint>-->
+<!--						<entrypoint>-->
+<!--							java -XX:ArchiveClassesAtExit=/app/application.jsa -Dspring.context.exit=onRefresh -jar /app/classpath/spring-boot-cds-demo-1.0.0-SNAPSHOT.original.jar &amp;&amp; java -Xlog:cds -XX:SharedArchiveFile=/app/application.jsa -jar /app/classpath/spring-boot-cds-demo-1.0.0-SNAPSHOT.original.jar-->
+<!--						</entrypoint>-->
+<!--						<user>nonroot:nonroot</user>-->
+<!--						<workingDirectory>/home/nonroot</workingDirectory>-->
+<!--						<extraClasspath>/appcds/*</extraClasspath>-->
+
+						<jvmFlags>
+							<jvmFlag>-Dspring.aot.enabled=true</jvmFlag>
+						</jvmFlags>
+
+					</container>
+					<containerizingMode>packaged</containerizingMode>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
