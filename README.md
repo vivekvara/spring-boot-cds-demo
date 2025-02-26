@@ -1,8 +1,17 @@
 # Spring Boot CDS demo
 https://spring.io/blog/2024/08/29/spring-boot-cds-support-and-project-leyden-anticipation
+https://developers.redhat.com/articles/2024/01/23/speed-java-application-startup-time-appcds#conclusion
 
-## Steps
-1. `JIB_CLASSPATH=$( docker inspect com.example/spring-boot-cds-demo-experiment --format '{{(index .Config.Entrypoint 2)}}' )`
+## Steps for Spring 3.3 and Later
+````
+rm -rf application  
+java -Djarmode=tools -jar target/spring-boot-cds-demo-1.0.0-SNAPSHOT.jar extract --destination application
+java -XX:ArchiveClassesAtExit=application.jsa -Dspring.context.exit=onRefresh -jar application/spring-boot-cds-demo-1.0.0-SNAPSHOT.jar
+java -XX:SharedArchiveFile=application.jsa -jar application/spring-boot-cds-demo-1.0.0-SNAPSHOT.jar 
+````
+
+## Steps for Before Spring 3.3
+
 
 
 This repository is intended to demonstrate how to use [Spring Boot 3.3+ CDS support](https://docs.spring.io/spring-boot/how-to/class-data-sharing.html). See also https://github.com/sdeleuze/petclinic-efficient-container.
