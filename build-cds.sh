@@ -8,7 +8,7 @@ docker image rm spring-boot-cds-prebuild spring-boot-cds
 mkdir -p ${PWD}/src/main/jib/appcds
 
 echo "Building the prebuild image, the tag is: $IMAGE_TAG"
-./mvnw package jib:dockerBuild -Djib.to.image=spring-boot-cds-prebuild -Djib.to.tags=$IMAGE_TAG -Djib.containerizingMode=packaged -Dmaven.test.skip=true
+./mvnw clean package jib:dockerBuild -Djib.to.image=spring-boot-cds-prebuild -Djib.to.tags=$IMAGE_TAG -Djib.containerizingMode=packaged -Dmaven.test.skip=true
 
 echo "Running the prebuild image to prepare the CDS archive"
 docker run -w /app -ti --entrypoint=/usr/bin/java \

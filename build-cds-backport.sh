@@ -19,7 +19,7 @@ echo "Running the prebuild image to prepare the CDS archive" #  -Xshare:dump -XX
 docker run -w /app -ti --entrypoint=/usr/bin/java \
   -v ${PWD}/src/main/jib/appcds:/appcds spring-boot-cds-prebuild -Xlog:cds -XX:ArchiveClassesAtExit=/appcds/appcds.jsa \
   -Dspring.context.exit=onRefresh \
-  -cp "@jib-classpath-file" com.example.appcdsdemo.CdsDemoApplicationcc
+  -cp "@jib-classpath-file" com.example.appcdsdemo.CdsDemoApplication
 
 echo "Building the final image, the tag is: $IMAGE_TAG"
 ./mvnw package jib:dockerBuild \
